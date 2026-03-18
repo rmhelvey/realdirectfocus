@@ -1,0 +1,14 @@
+{
+  "permissions": {
+    "allow": [
+      "mcp__Claude_Preview__preview_start",
+      "WebFetch(domain:realdirectfocus.com)",
+      "WebFetch(domain:betterbill.ai)",
+      "WebFetch(domain:www.linkedin.com)",
+      "Bash(grep -E \"\\\\.\\(png|jpg|jpeg|svg|gif|webp|woff|woff2|ttf|eot\\)$\")",
+      "Bash(git init:*)",
+      "Bash(git branch:*)",
+      "Bash(gh repo:*)"
+    ]
+  }
+}
