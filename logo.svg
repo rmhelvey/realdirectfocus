@@ -1,0 +1,18 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 200">
+  <circle cx="100" cy="100" r="100" fill="#6495ED"/>
+  <!-- Mountain silhouette -->
+  <g fill="#1a1a1a">
+    <!-- Main large peak (right) -->
+    <path d="M 155 130 L 120 65 L 105 90 L 95 75 L 60 130 Z"/>
+    <!-- Secondary peak (left) -->
+    <path d="M 100 130 L 75 80 L 55 110 L 45 100 L 30 130 Z"/>
+    <!-- Ridge detail on main peak -->
+    <path d="M 170 130 L 145 85 L 135 95 L 125 80 L 110 100 L 100 130 Z"/>
+  </g>
+  <!-- Snow caps -->
+  <g fill="#ffffff" opacity="0.3">
+    <path d="M 120 65 L 113 78 L 105 90 L 115 82 L 125 75 Z"/>
+    <path d="M 75 80 L 68 92 L 62 100 L 72 93 L 80 88 Z"/>
+    <path d="M 145 85 L 138 97 L 135 95 L 140 90 Z"/>
+  </g>
+</svg>
