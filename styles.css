@@ -1145,6 +1145,17 @@ img {
   color: var(--gray-500);
 }
 
+.footer-links a.footer-project {
+  font-size: 1.05rem;
+  font-weight: 700;
+  color: var(--white);
+  letter-spacing: -0.01em;
+}
+
+.footer-links a.footer-project:hover {
+  color: var(--blue-300);
+}
+
 .footer-divider {
   color: var(--gray-600);
 }
