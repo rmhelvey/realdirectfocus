@@ -79,7 +79,8 @@ document.querySelectorAll('a[href^="#"]').forEach(anchor => {
     if (!status) return;
     status.hidden = false;
     status.textContent = msg;
-    status.style.color = ok ? '#0a7d40' : '#b00020';
+    status.classList.remove('contact-status-success', 'contact-status-error');
+    status.classList.add(ok ? 'contact-status-success' : 'contact-status-error');
   }
 
   form.addEventListener('submit', async (e) => {
