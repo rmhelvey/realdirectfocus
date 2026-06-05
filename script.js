@@ -52,21 +52,6 @@ document.querySelectorAll('.services-grid, .credentials-grid, .results-grid, .in
   });
 });
 
-// Contact form handler (basic - replace with Formspree/Netlify Forms in production)
-const form = document.getElementById('contact-form');
-form.addEventListener('submit', (e) => {
-  e.preventDefault();
-
-  const name = form.querySelector('#name').value;
-  const email = form.querySelector('#email').value;
-  const message = form.querySelector('#message').value;
-
-  // Fallback to mailto if no form service configured
-  const subject = encodeURIComponent(`Inquiry from ${name}`);
-  const body = encodeURIComponent(`From: ${name}\nEmail: ${email}\n\n${message}`);
-  window.location.href = `mailto:owner@realdirectfocus.com?subject=${subject}&body=${body}`;
-});
-
 // Smooth scroll for anchor links
 document.querySelectorAll('a[href^="#"]').forEach(anchor => {
   anchor.addEventListener('click', function (e) {
