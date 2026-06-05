@@ -79,3 +79,64 @@ document.querySelectorAll('a[href^="#"]').forEach(anchor => {
     }
   });
 });
+
+// Contact form → marketing-api
+(function() {
+  const MARKETING_API_URL = 'https://marketing-api-tan.vercel.app/api/lead';
+
+  const form = document.getElementById('contact-form');
+  if (!form) return;
+
+  const status = document.getElementById('contact-status');
+  const submitBtn = document.getElementById('contact-submit');
+
+  function showStatus(msg, ok) {
+    if (!status) return;
+    status.hidden = false;
+    status.textContent = msg;
+    status.style.color = ok ? '#0a7d40' : '#b00020';
+  }
+
+  form.addEventListener('submit', async (e) => {
+    e.preventDefault();
+    if (submitBtn.disabled) return;
+    submitBtn.disabled = true;
+    showStatus('Sending…', true);
+
+    const body = {
+      kind: 'inquiry',
+      source_product: 'realdirectfocus',
+      name: form.elements['name'].value.trim(),
+      email: form.elements['email'].value.trim(),
+      message: form.elements['message'].value.trim(),
+      honeypot: form.elements['honeypot'].value,
+      source: 'contact-section',
+    };
+
+    try {
+      const res = await fetch(MARKETING_API_URL, {
+        method: 'POST',
+        headers: { 'content-type': 'application/json' },
+        body: JSON.stringify(body),
+      });
+      const json = await res.json().catch(() => ({}));
+
+      if (res.ok) {
+        form.reset();
+        showStatus("Thanks — I'll be in touch within the business day.", true);
+      } else if (res.status === 400 && json.error && typeof json.error === 'object') {
+        const firstField = Object.keys(json.error)[0];
+        const firstMsg = json.error[firstField];
+        showStatus(firstMsg ? `${firstField}: ${firstMsg}` : 'Please check your entries.', false);
+      } else if (res.status === 429) {
+        showStatus('Too many submissions. Try again in an hour or email directly.', false);
+      } else {
+        showStatus('Something went wrong. Email directly or try again later.', false);
+      }
+    } catch (err) {
+      showStatus('Network error. Email directly or try again later.', false);
+    } finally {
+      submitBtn.disabled = false;
+    }
+  });
+})();
